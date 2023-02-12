@@ -1,0 +1,83 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="DACS1.Public" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NT-SNEAKERS</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/fontawesome-free-6.1.1-web/css/all.min.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <header id="myHeader">
+                <img src="/images/images-public/NT-SNEAKERS_free-file.png" alt="logo" />
+                <nav>
+                    <ul class="list">
+                        <li><a href="/user/TrangChu.aspx">TRANG CHỦ</a></li>
+                        <li class="list-dropdown-father">
+                            <a href="#">THƯƠNG HIỆU</a>
+                            <ul class="list-dropdown-child">
+                                <% foreach (var item in listTH)
+                                    {%><li><a href='<%="SanPhamHang.aspx?MATH=" +item.MATH %>'><%=item.TENTH %></a></li>
+                                <%} %>
+                            </ul>
+                        </li>
+                        <li><a href="/user/GioiThieu.aspx">GIỚI THIỆU</a></li>
+                        <li><a href="/user/LienHe.aspx">LIÊN HỆ</a></li>
+                    </ul>
+                </nav>
+                <div class="seach">
+                    <asp:TextBox ID="boxseach" runat="server" placeholder="Tìm kiếm" CssClass="seach_box"></asp:TextBox>
+                    <asp:Button ID="btnseach" runat="server" Text="Tìm kiếm" CssClass="seach_button" OnClick="btnseach_Click" />
+                    <div class="infoseach">
+                        <%foreach (var item in listSP)
+                            {%>
+                        <a href='<%="ChiTietSanPham.aspx?MASP=" + item.MASP%>'>
+                            <p class="infoseach-child"><%=item.TENSP %></p>
+                        </a>
+                        <%} %>
+                    </div>
+                </div>
+                <a href="/user/GioHang.aspx" id="cart"><i class="fa-solid fa-cart-arrow-down"></i></a>
+            </header>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer>
+            <div class="info-footer">
+                <h3>Giới thiệu về chúng tôi</h3>
+                <p>
+                    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
+        texts.
+                </p>
+            </div>
+            <div class="info-footer">
+                <h3>Thông tin</h3>
+                <p><i class="fa-solid fa-location-crosshairs"></i>146 Nguyễn Văn Cừ, Ninh Kiều, Cần thơ</p>
+                <p><i class="fa-solid fa-phone"></i>0933999999</p>
+                <p><i class="fa-solid fa-envelope"></i>ntsneakers@gamil.com</p>
+            </div>
+            <div class="info-footer">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>               
+            </div>
+            <div class="info-footer">
+                <h3>Đăng nhập quản trị</h3> 
+                <asp:TextBox ID="username" runat="server" placeholder="Tên đăng nhập" CssClass="textbox-Account"></asp:TextBox>
+                <asp:TextBox ID="password" runat="server" placeholder="Mật khẩu" CssClass="textbox-Account"></asp:TextBox>
+                <asp:Button ID="btnDN" runat="server" Text="Đăng nhập" CssClass="botton-Account" OnClick="btnDN_Click" />
+            </div>            
+        </footer>
+    </form>
+</body>
+<script src="/js/app.js" language="javascript" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</html>
